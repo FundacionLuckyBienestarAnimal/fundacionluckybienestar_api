@@ -1,4 +1,4 @@
--- ===========================================================
+﻿-- ===========================================================
 -- FUNDACIÓN LUCKY BIENESTAR ANIMAL - ESQUEMA DB V1.1
 -- Corrección: badges desacoplados de profiles
 -- PostgreSQL / Supabase
@@ -831,16 +831,6 @@ VALUES
     ('operator', 'communications.manage'),
     ('operator', 'profile.read_own'),
     ('operator', 'profile.update_own')
-ON CONFLICT DO NOTHING;
-
--- Ayudante
-INSERT INTO public.role_permissions (role_key, permission_key)
-VALUES
-    ('foundation_helper', 'backoffice.access'),
-    ('foundation_helper', 'content.manage'),
-    ('foundation_helper', 'animals.manage'),
-    ('foundation_helper', 'profile.read_own'),
-    ('foundation_helper', 'profile.update_own')
 ON CONFLICT DO NOTHING;
 
 -- Usuario normal
