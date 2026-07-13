@@ -268,3 +268,42 @@ export type VolunteerProfileRow = {
   updated_at: string;
   deleted_at: string | null;
 };
+
+export type ContactInfoRow = {
+  id: string;
+  whatsapp_number: string | null;
+  phone_label: string | null;
+  email: string | null;
+  address: string | null;
+  map_embed_url: string | null;
+  google_maps_url: string | null;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type SocialLinkRow = {
+  id: string;
+  platform: string;
+  label: string | null;
+  url: string;
+  icon: string | null;
+  is_active: boolean;
+  order_index: number;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type FaqItemRow = {
+  id: string;
+  question: string;
+  answer: string;
+  category: string | null;
+  is_active: boolean;
+  order_index: number;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};

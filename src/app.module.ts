@@ -63,6 +63,21 @@ import { GetPublicPublicationBySlugUseCase } from './application/use-cases/publi
 import { GetPublicPublicationsUseCase } from './application/use-cases/publications/get-public-publications';
 import { UpdatePublicationCategoryUseCase } from './application/use-cases/publications/update-category';
 import { UpdatePublicationUseCase } from './application/use-cases/publications/update-publication';
+import { CreateContactInfoUseCase } from './application/use-cases/settings/create-contact-info';
+import { CreateFaqItemUseCase } from './application/use-cases/settings/create-faq-item';
+import { CreateSocialLinkUseCase } from './application/use-cases/settings/create-social-link';
+import { DeleteContactInfoUseCase } from './application/use-cases/settings/delete-contact-info';
+import { DeleteFaqItemUseCase } from './application/use-cases/settings/delete-faq-item';
+import { DeleteSocialLinkUseCase } from './application/use-cases/settings/delete-social-link';
+import { GetAdminContactInfoUseCase } from './application/use-cases/settings/get-admin-contact-info';
+import { GetAdminFaqItemsUseCase } from './application/use-cases/settings/get-admin-faq-items';
+import { GetAdminSocialLinksUseCase } from './application/use-cases/settings/get-admin-social-links';
+import { GetPublicContactInfoUseCase } from './application/use-cases/settings/get-public-contact-info';
+import { GetPublicFaqItemsUseCase } from './application/use-cases/settings/get-public-faq-items';
+import { GetPublicSocialLinksUseCase } from './application/use-cases/settings/get-public-social-links';
+import { UpdateContactInfoUseCase } from './application/use-cases/settings/update-contact-info';
+import { UpdateFaqItemUseCase } from './application/use-cases/settings/update-faq-item';
+import { UpdateSocialLinkUseCase } from './application/use-cases/settings/update-social-link';
 import { GetMyProfileUseCase } from './application/use-cases/users/get-my-profile';
 import { UpdateMyProfileUseCase } from './application/use-cases/users/update-my-profile';
 import { ANIMAL_REPOSITORY } from './domain/ports/output/animal-repository';
@@ -71,6 +86,7 @@ import { AUTH_REPOSITORY } from './domain/ports/output/auth-repository';
 import { LANDING_REPOSITORY } from './domain/ports/output/landing-repository';
 import { MEDIA_REPOSITORY } from './domain/ports/output/media-repository';
 import { PUBLICATION_REPOSITORY } from './domain/ports/output/publication-repository';
+import { SETTINGS_REPOSITORY } from './domain/ports/output/settings-repository';
 import { USER_REPOSITORY } from './domain/ports/output/user-repository';
 import { VOLUNTEER_REPOSITORY } from './domain/ports/output/volunteer-repository';
 import { AdminLandingController } from './infrastructure/controllers/admin/landing';
@@ -78,6 +94,7 @@ import { AdminAdoptionsController } from './infrastructure/controllers/admin/ado
 import { AdminAnimalsController } from './infrastructure/controllers/admin/animals';
 import { AdminMediaController } from './infrastructure/controllers/admin/media';
 import { AdminPublicationsController } from './infrastructure/controllers/admin/publications';
+import { AdminSettingsController } from './infrastructure/controllers/admin/settings';
 import { AdminUsersController } from './infrastructure/controllers/admin/users';
 import { AdminVolunteersController } from './infrastructure/controllers/admin/volunteers';
 import { AuthController } from './infrastructure/controllers/auth';
@@ -86,6 +103,7 @@ import { PublicLandingController } from './infrastructure/controllers/public/lan
 import { PublicAdoptionsController } from './infrastructure/controllers/public/adoptions';
 import { PublicAnimalsController } from './infrastructure/controllers/public/animals';
 import { PublicPublicationsController } from './infrastructure/controllers/public/publications';
+import { PublicSettingsController } from './infrastructure/controllers/public/settings';
 import { PublicVolunteersController } from './infrastructure/controllers/public/volunteers';
 import { UsersController } from './infrastructure/controllers/users';
 import { VolunteersController } from './infrastructure/controllers/volunteers';
@@ -97,6 +115,7 @@ import { AnimalSupabaseRepository } from './infrastructure/persistence/supabase/
 import { LandingSupabaseRepository } from './infrastructure/persistence/supabase/repositories/landing-supabase';
 import { MediaSupabaseRepository } from './infrastructure/persistence/supabase/repositories/media-supabase';
 import { PublicationSupabaseRepository } from './infrastructure/persistence/supabase/repositories/publication-supabase';
+import { SettingsSupabaseRepository } from './infrastructure/persistence/supabase/repositories/settings-supabase';
 import { SupabaseModule } from './infrastructure/persistence/supabase/supabase.module';
 import { UserSupabaseRepository } from './infrastructure/persistence/supabase/repositories/user-supabase';
 import { VolunteerSupabaseRepository } from './infrastructure/persistence/supabase/repositories/volunteer-supabase';
@@ -125,6 +144,8 @@ import { VolunteerSupabaseRepository } from './infrastructure/persistence/supaba
     PublicPublicationsController,
     AdminPublicationsController,
     AdminMediaController,
+    PublicSettingsController,
+    AdminSettingsController,
   ],
   providers: [
     CreateOperatorUseCase,
@@ -192,6 +213,21 @@ import { VolunteerSupabaseRepository } from './infrastructure/persistence/supaba
     CreatePublicationUseCase,
     UpdatePublicationUseCase,
     DeletePublicationUseCase,
+    GetPublicContactInfoUseCase,
+    GetAdminContactInfoUseCase,
+    CreateContactInfoUseCase,
+    UpdateContactInfoUseCase,
+    DeleteContactInfoUseCase,
+    GetPublicSocialLinksUseCase,
+    GetAdminSocialLinksUseCase,
+    CreateSocialLinkUseCase,
+    UpdateSocialLinkUseCase,
+    DeleteSocialLinkUseCase,
+    GetPublicFaqItemsUseCase,
+    GetAdminFaqItemsUseCase,
+    CreateFaqItemUseCase,
+    UpdateFaqItemUseCase,
+    DeleteFaqItemUseCase,
     SupabaseAuthGuard,
     RolesPermissionsGuard,
     {
@@ -225,6 +261,10 @@ import { VolunteerSupabaseRepository } from './infrastructure/persistence/supaba
     {
       provide: VOLUNTEER_REPOSITORY,
       useClass: VolunteerSupabaseRepository,
+    },
+    {
+      provide: SETTINGS_REPOSITORY,
+      useClass: SettingsSupabaseRepository,
     },
   ],
 })

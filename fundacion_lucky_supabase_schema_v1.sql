@@ -1913,6 +1913,27 @@ GRANT SELECT ON public.profiles TO authenticated;
 GRANT ALL ON public.profiles TO service_role;
 
 ---VALIDAR ROL 
+
+--GRANT CONTACTO, REDES Y FAQ
+GRANT USAGE ON SCHEMA public TO anon, authenticated, service_role;
+
+GRANT SELECT ON
+  public.contact_info,
+  public.social_links,
+  public.faq_items
+TO anon, authenticated;
+
+GRANT INSERT, UPDATE, DELETE ON
+  public.contact_info,
+  public.social_links,
+  public.faq_items
+TO authenticated;
+
+GRANT ALL ON
+  public.contact_info,
+  public.social_links,
+  public.faq_items
+TO service_role;
 SELECT
   p.id,
   p.first_names,
