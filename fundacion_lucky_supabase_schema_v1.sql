@@ -1308,6 +1308,32 @@ BEGIN
     END LOOP;
 END $$;
 
+-- Permisos base para que PostgREST/Supabase pueda aplicar las políticas RLS.
+-- Las políticas deciden qué puede leer o modificar cada rol; estos GRANT solo
+-- habilitan el acceso inicial a las tablas desde la API.
+GRANT USAGE ON SCHEMA public TO anon, authenticated, service_role;
+
+GRANT SELECT ON
+    public.landing_sections,
+    public.hero_cards,
+    public.landing_impact_blocks,
+    public.landing_info_cards
+TO anon, authenticated;
+
+GRANT INSERT, UPDATE, DELETE ON
+    public.landing_sections,
+    public.hero_cards,
+    public.landing_impact_blocks,
+    public.landing_info_cards
+TO authenticated;
+
+GRANT ALL ON
+    public.landing_sections,
+    public.hero_cards,
+    public.landing_impact_blocks,
+    public.landing_info_cards
+TO service_role;
+
 -- Lectura pública básica.
 CREATE POLICY "Public can read active avatars"
 ON public.avatar_options FOR SELECT
@@ -1714,6 +1740,52 @@ WITH CHECK (public.has_permission('communications.manage'));
 -- ===========================================================
 -- FIN DEL SCRIPT V1
 -- ===========================================================
+
+
+
+
+
+
+
+
+---PERMISO TABLA ROL
+
+
+GRANT USAGE ON SCHEMA public TO service_role;
+
+GRANT SELECT, INSERT, UPDATE ON public.profiles TO service_role;
+GRANT SELECT, INSERT, UPDATE ON public.user_roles TO service_role;
+GRANT SELECT ON public.roles TO service_role;
+GRANT SELECT ON public.role_permissions TO service_role;
+GRANT SELECT ON public.permissions TO service_role;
+
+
+---GRANT = le da permiso básico a la API para tocar la tabla.el rol de base de datos que está usando no tiene permiso para leerla”.
+
+GRANT USAGE ON SCHEMA public TO anon, authenticated, service_role;
+
+GRANT SELECT ON
+  public.landing_sections,
+  public.hero_cards,
+  public.landing_impact_blocks,
+  public.landing_info_cards
+TO anon, authenticated;
+
+GRANT INSERT, UPDATE, DELETE ON
+  public.landing_sections,
+  public.hero_cards,
+  public.landing_impact_blocks,
+  public.landing_info_cards
+TO authenticated;
+
+GRANT ALL ON
+  public.landing_sections,
+  public.hero_cards,
+  public.landing_impact_blocks,
+  public.landing_info_cards
+TO service_role;
+
+
 
 
 

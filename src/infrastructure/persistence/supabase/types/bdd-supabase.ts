@@ -33,3 +33,64 @@ export type RolePermissionRow = {
     created_at: string;
   } | null;
 };
+
+export type LandingSectionRow = {
+  id: string;
+  key: string;
+  title: string | null;
+  highlighted_text: string | null;
+  subtitle: string | null;
+  main_media_id: string | null;
+  is_active: boolean;
+  order_index: number;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type HeroCardRow = {
+  id: string;
+  section_id: string;
+  title: string;
+  description: string | null;
+  icon: string | null;
+  cta_label: string | null;
+  cta_href: string | null;
+  is_active: boolean;
+  order_index: number;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type LandingImpactBlockRow = {
+  id: string;
+  section_id: string;
+  prefix_text: string | null;
+  metric_value: number;
+  suffix_text: string | null;
+  description: string | null;
+  icon: string | null;
+  cta_label: string | null;
+  cta_href: string | null;
+  is_active: boolean;
+  order_index: number;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type LandingInfoCardRow = {
+  id: string;
+  section_id: string;
+  title: string;
+  description: string | null;
+  icon: string | null;
+  cta_label: string | null;
+  cta_href: string | null;
+  is_active: boolean;
+  order_index: number;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
