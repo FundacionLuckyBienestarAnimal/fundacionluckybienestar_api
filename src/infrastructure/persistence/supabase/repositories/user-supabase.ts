@@ -4,10 +4,10 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { SupabaseClient } from '@supabase/supabase-js';
-import { CurrentUser } from '../../../../domain/models/current-user';
-import { Permission } from '../../../../domain/models/permission';
-import { Profile } from '../../../../domain/models/profile';
-import { Role } from '../../../../domain/models/role';
+import { Permission } from '../../../../domain/models/access-control/permission';
+import { Role } from '../../../../domain/models/access-control/role';
+import { CurrentUser } from '../../../../domain/models/users/current-user';
+import { Profile } from '../../../../domain/models/users/profile';
 import { UserRepositoryPort } from '../../../../domain/ports/output/user-repository';
 import { SUPABASE_ADMIN_CLIENT } from '../supabase.tokens';
 import type {

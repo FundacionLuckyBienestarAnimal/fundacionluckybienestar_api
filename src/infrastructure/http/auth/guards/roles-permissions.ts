@@ -1,7 +1,7 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { GetCurrentUserUseCase } from '../../../../application/use-cases/get-current-user';
-import { AuthenticatedUser } from '../../../../domain/models/authenticated-user';
+import { GetCurrentUserUseCase } from '../../../../application/use-cases/auth/get-current-user';
+import { AuthenticatedUser } from '../../../../domain/models/auth/authenticated-user';
 import { PERMISSIONS_KEY } from '../decorators/permissions';
 import { ROLES_KEY } from '../decorators/roles';
 

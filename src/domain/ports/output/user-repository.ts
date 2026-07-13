@@ -1,4 +1,4 @@
-import { CurrentUser } from '../../models/current-user';
+import { CurrentUser } from '../../models/users/current-user';
 
 export const USER_REPOSITORY = Symbol('USER_REPOSITORY');
 

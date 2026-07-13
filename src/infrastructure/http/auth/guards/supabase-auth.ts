@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { SupabaseClient } from '@supabase/supabase-js';
 import { Request } from 'express';
-import { AuthenticatedUser } from '../../../../domain/models/authenticated-user';
+import { AuthenticatedUser } from '../../../../domain/models/auth/authenticated-user';
 import { SUPABASE_ADMIN_CLIENT } from '../../../persistence/supabase/supabase.tokens';
 
 type AuthenticatedRequest = Request & {

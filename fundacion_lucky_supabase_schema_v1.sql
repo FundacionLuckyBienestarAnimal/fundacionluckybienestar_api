@@ -1714,3 +1714,70 @@ WITH CHECK (public.has_permission('communications.manage'));
 -- ===========================================================
 -- FIN DEL SCRIPT V1
 -- ===========================================================
+
+
+
+
+
+---VALIDAR ROL 
+SELECT
+  p.id,
+  p.first_names,
+  p.last_names,
+  ur.role_key
+FROM public.profiles p
+LEFT JOIN public.user_roles ur ON ur.user_id = p.id
+WHERE p.id = '69b63949-a88c-4426-93e7-6c69e6a2b942';
+
+--INSERTAR admin
+INSERT INTO public.profiles (
+  id,
+  first_names,
+  last_names,
+  phone,
+  status,
+  user_type
+)
+SELECT
+  id,
+  'Admin',
+  'Lucky',
+  '0999999999',
+  'active',
+  'staff'
+FROM auth.users
+WHERE email = 'appbienestaranimal@hotmail.com'
+ON CONFLICT (id)
+DO UPDATE SET
+  first_names = EXCLUDED.first_names,
+  last_names = EXCLUDED.last_names,
+  phone = EXCLUDED.phone,
+  status = EXCLUDED.status,
+  user_type = EXCLUDED.user_type;
+
+INSERT INTO public.user_roles (
+  user_id,
+  role_key,
+  assigned_by,
+  is_active
+)
+SELECT
+  id,
+  'admin',
+  NULL,
+  TRUE
+FROM auth.users
+WHERE email = 'appbienestaranimal@hotmail.com'
+ON CONFLICT (user_id, role_key)
+DO UPDATE SET is_active = TRUE;
+
+---eliminar publiz.user
+UPDATE public.user_roles
+SET is_active = FALSE
+WHERE user_id = '5b592ec9-2920-404e-b11b-f3921ec540a4'
+AND role_key = 'public_user';
+
+--eliminar rol con ese ID
+DELETE FROM public.user_roles
+WHERE user_id = '69b63949-a88c-4426-93e7-6c69e6a2b942'
+AND role_key = 'public_user';

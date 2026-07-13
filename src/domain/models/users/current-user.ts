@@ -1,7 +1,7 @@
-import { Permission } from './permission';
+import { Permission } from '../access-control/permission';
+import { Role } from '../access-control/role';
+import { AuthUser } from '../auth/auth-user';
 import { Profile } from './profile';
-import { Role } from './role';
-import { AuthUser } from './auth-user';
 
 export interface CurrentUser extends AuthUser {
   profile: Profile | null;
