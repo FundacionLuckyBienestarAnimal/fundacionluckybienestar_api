@@ -20,6 +20,16 @@ import { GetMyAdoptionApplicationsUseCase } from './application/use-cases/adopti
 import { GetPublicHousingTypesUseCase } from './application/use-cases/adoptions/get-public-housing-types';
 import { UpdateAdoptionStatusUseCase } from './application/use-cases/adoptions/update-adoption-status';
 import { UpdateHousingTypeUseCase } from './application/use-cases/adoptions/update-housing-type';
+import { CreateVolunteerApplicationUseCase } from './application/use-cases/volunteers/create-volunteer-application';
+import { CreateVolunteerRequirementUseCase } from './application/use-cases/volunteers/create-requirement';
+import { DeleteVolunteerRequirementUseCase } from './application/use-cases/volunteers/delete-requirement';
+import { GetAdminVolunteerApplicationsUseCase } from './application/use-cases/volunteers/get-admin-volunteer-applications';
+import { GetAdminVolunteerRequirementsUseCase } from './application/use-cases/volunteers/get-admin-requirements';
+import { GetMyVolunteerApplicationsUseCase } from './application/use-cases/volunteers/get-my-volunteer-applications';
+import { GetPublicVolunteerRequirementsUseCase } from './application/use-cases/volunteers/get-public-requirements';
+import { GetVolunteerProfilesUseCase } from './application/use-cases/volunteers/get-volunteer-profiles';
+import { UpdateVolunteerRequirementUseCase } from './application/use-cases/volunteers/update-requirement';
+import { UpdateVolunteerStatusUseCase } from './application/use-cases/volunteers/update-volunteer-status';
 import { CreateOperatorUseCase } from './application/use-cases/admin/create-operator';
 import { GetCurrentUserUseCase } from './application/use-cases/auth/get-current-user';
 import { LoginUserUseCase } from './application/use-cases/auth/login-user';
@@ -62,19 +72,23 @@ import { LANDING_REPOSITORY } from './domain/ports/output/landing-repository';
 import { MEDIA_REPOSITORY } from './domain/ports/output/media-repository';
 import { PUBLICATION_REPOSITORY } from './domain/ports/output/publication-repository';
 import { USER_REPOSITORY } from './domain/ports/output/user-repository';
+import { VOLUNTEER_REPOSITORY } from './domain/ports/output/volunteer-repository';
 import { AdminLandingController } from './infrastructure/controllers/admin/landing';
 import { AdminAdoptionsController } from './infrastructure/controllers/admin/adoptions';
 import { AdminAnimalsController } from './infrastructure/controllers/admin/animals';
 import { AdminMediaController } from './infrastructure/controllers/admin/media';
 import { AdminPublicationsController } from './infrastructure/controllers/admin/publications';
 import { AdminUsersController } from './infrastructure/controllers/admin/users';
+import { AdminVolunteersController } from './infrastructure/controllers/admin/volunteers';
 import { AuthController } from './infrastructure/controllers/auth';
 import { AdoptionsController } from './infrastructure/controllers/adoptions';
 import { PublicLandingController } from './infrastructure/controllers/public/landing';
 import { PublicAdoptionsController } from './infrastructure/controllers/public/adoptions';
 import { PublicAnimalsController } from './infrastructure/controllers/public/animals';
 import { PublicPublicationsController } from './infrastructure/controllers/public/publications';
+import { PublicVolunteersController } from './infrastructure/controllers/public/volunteers';
 import { UsersController } from './infrastructure/controllers/users';
+import { VolunteersController } from './infrastructure/controllers/volunteers';
 import { RolesPermissionsGuard } from './infrastructure/http/auth/guards/roles-permissions';
 import { SupabaseAuthGuard } from './infrastructure/http/auth/guards/supabase-auth';
 import { AuthSupabaseRepository } from './infrastructure/persistence/supabase/repositories/auth-supabase';
@@ -85,6 +99,7 @@ import { MediaSupabaseRepository } from './infrastructure/persistence/supabase/r
 import { PublicationSupabaseRepository } from './infrastructure/persistence/supabase/repositories/publication-supabase';
 import { SupabaseModule } from './infrastructure/persistence/supabase/supabase.module';
 import { UserSupabaseRepository } from './infrastructure/persistence/supabase/repositories/user-supabase';
+import { VolunteerSupabaseRepository } from './infrastructure/persistence/supabase/repositories/volunteer-supabase';
 
 @Module({
   imports: [
@@ -104,6 +119,9 @@ import { UserSupabaseRepository } from './infrastructure/persistence/supabase/re
     PublicAdoptionsController,
     AdoptionsController,
     AdminAdoptionsController,
+    PublicVolunteersController,
+    VolunteersController,
+    AdminVolunteersController,
     PublicPublicationsController,
     AdminPublicationsController,
     AdminMediaController,
@@ -135,6 +153,16 @@ import { UserSupabaseRepository } from './infrastructure/persistence/supabase/re
     GetMyAdoptionApplicationsUseCase,
     GetAdminAdoptionApplicationsUseCase,
     UpdateAdoptionStatusUseCase,
+    GetPublicVolunteerRequirementsUseCase,
+    GetAdminVolunteerRequirementsUseCase,
+    CreateVolunteerRequirementUseCase,
+    UpdateVolunteerRequirementUseCase,
+    DeleteVolunteerRequirementUseCase,
+    CreateVolunteerApplicationUseCase,
+    GetMyVolunteerApplicationsUseCase,
+    GetAdminVolunteerApplicationsUseCase,
+    UpdateVolunteerStatusUseCase,
+    GetVolunteerProfilesUseCase,
     GetPublicLandingUseCase,
     GetAdminLandingUseCase,
     CreateLandingSectionUseCase,
@@ -193,6 +221,10 @@ import { UserSupabaseRepository } from './infrastructure/persistence/supabase/re
     {
       provide: ADOPTION_REPOSITORY,
       useClass: AdoptionSupabaseRepository,
+    },
+    {
+      provide: VOLUNTEER_REPOSITORY,
+      useClass: VolunteerSupabaseRepository,
     },
   ],
 })

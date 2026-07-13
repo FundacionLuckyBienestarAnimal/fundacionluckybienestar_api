@@ -1843,21 +1843,33 @@ GRANT ALL ON storage.buckets TO authenticated, service_role;
 GRANT USAGE ON SCHEMA public TO anon, authenticated, service_role;
 
 GRANT SELECT ON
-  public.housing_types,
-  public.adoption_applications,
-  public.adoption_status_history
+    public.housing_types,
+    public.adoption_applications,
+    public.adoption_status_history,
+    public.volunteer_requirements,
+    public.volunteer_applications,
+    public.volunteer_application_status_history,
+    public.volunteer_profiles
 TO anon, authenticated;
 
 GRANT INSERT, UPDATE, DELETE ON
-  public.housing_types,
-  public.adoption_applications,
-  public.adoption_status_history
+    public.housing_types,
+    public.adoption_applications,
+    public.adoption_status_history,
+    public.volunteer_requirements,
+    public.volunteer_applications,
+    public.volunteer_application_status_history,
+    public.volunteer_profiles
 TO authenticated;
 
 GRANT ALL ON
-  public.housing_types,
-  public.adoption_applications,
-  public.adoption_status_history
+    public.housing_types,
+    public.adoption_applications,
+    public.adoption_status_history,
+    public.volunteer_requirements,
+    public.volunteer_applications,
+    public.volunteer_application_status_history,
+    public.volunteer_profiles
 TO service_role;
 
 --GRANT TABLAS RELACIONES
@@ -1872,7 +1884,33 @@ GRANT ALL ON
 TO service_role;
 
 
+--GRANT VOLUNTARIO 
+GRANT USAGE ON SCHEMA public TO anon, authenticated, service_role;
 
+GRANT SELECT ON
+  public.volunteer_requirements,
+  public.volunteer_applications,
+  public.volunteer_application_status_history,
+  public.volunteer_profiles
+TO anon, authenticated;
+
+GRANT INSERT, UPDATE, DELETE ON
+  public.volunteer_requirements,
+  public.volunteer_applications,
+  public.volunteer_application_status_history,
+  public.volunteer_profiles
+TO authenticated;
+
+GRANT ALL ON
+  public.volunteer_requirements,
+  public.volunteer_applications,
+  public.volunteer_application_status_history,
+  public.volunteer_profiles
+TO service_role;
+
+--GRANT TABLAS RELACIONADAS VOLUNTARIO
+GRANT SELECT ON public.profiles TO authenticated;
+GRANT ALL ON public.profiles TO service_role;
 
 ---VALIDAR ROL 
 SELECT

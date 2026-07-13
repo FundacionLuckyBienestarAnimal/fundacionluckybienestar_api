@@ -227,3 +227,44 @@ export type AdoptionApplicationRow = {
   deleted_at: string | null;
   housing_types?: HousingTypeRow | null;
 };
+
+export type VolunteerRequirementRow = {
+  id: string;
+  title: string;
+  description: string | null;
+  type: 'material' | 'schedule' | 'condition' | 'other';
+  is_required: boolean;
+  is_active: boolean;
+  order_index: number;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type VolunteerApplicationRow = {
+  id: string;
+  user_id: string;
+  motivation: string;
+  availability_type: 'weekdays' | 'weekends' | 'both';
+  status: 'submitted' | 'under_review' | 'approved' | 'rejected' | 'cancelled';
+  is_adult_confirmed: boolean;
+  reviewed_by: string | null;
+  review_message: string | null;
+  submitted_at: string;
+  reviewed_at: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type VolunteerProfileRow = {
+  id: string;
+  user_id: string;
+  approved_application_id: string;
+  status: 'active' | 'inactive' | 'suspended';
+  approved_at: string;
+  approved_by: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
