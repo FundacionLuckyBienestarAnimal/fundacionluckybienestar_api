@@ -18,20 +18,35 @@ import { UpdateHeroCardUseCase } from './application/use-cases/landing/update-he
 import { UpdateLandingImpactBlockUseCase } from './application/use-cases/landing/update-impact-block';
 import { UpdateLandingInfoCardUseCase } from './application/use-cases/landing/update-info-card';
 import { UpdateLandingSectionUseCase } from './application/use-cases/landing/update-section';
+import { CreatePublicationCategoryUseCase } from './application/use-cases/publications/create-category';
+import { CreatePublicationUseCase } from './application/use-cases/publications/create-publication';
+import { DeletePublicationCategoryUseCase } from './application/use-cases/publications/delete-category';
+import { DeletePublicationUseCase } from './application/use-cases/publications/delete-publication';
+import { GetAdminPublicationCategoriesUseCase } from './application/use-cases/publications/get-admin-categories';
+import { GetAdminPublicationsUseCase } from './application/use-cases/publications/get-admin-publications';
+import { GetPublicPublicationCategoriesUseCase } from './application/use-cases/publications/get-public-categories';
+import { GetPublicPublicationBySlugUseCase } from './application/use-cases/publications/get-public-publication-by-slug';
+import { GetPublicPublicationsUseCase } from './application/use-cases/publications/get-public-publications';
+import { UpdatePublicationCategoryUseCase } from './application/use-cases/publications/update-category';
+import { UpdatePublicationUseCase } from './application/use-cases/publications/update-publication';
 import { GetMyProfileUseCase } from './application/use-cases/users/get-my-profile';
 import { UpdateMyProfileUseCase } from './application/use-cases/users/update-my-profile';
 import { AUTH_REPOSITORY } from './domain/ports/output/auth-repository';
 import { LANDING_REPOSITORY } from './domain/ports/output/landing-repository';
+import { PUBLICATION_REPOSITORY } from './domain/ports/output/publication-repository';
 import { USER_REPOSITORY } from './domain/ports/output/user-repository';
 import { AdminLandingController } from './infrastructure/controllers/admin/landing';
+import { AdminPublicationsController } from './infrastructure/controllers/admin/publications';
 import { AdminUsersController } from './infrastructure/controllers/admin/users';
 import { AuthController } from './infrastructure/controllers/auth';
 import { PublicLandingController } from './infrastructure/controllers/public/landing';
+import { PublicPublicationsController } from './infrastructure/controllers/public/publications';
 import { UsersController } from './infrastructure/controllers/users';
 import { RolesPermissionsGuard } from './infrastructure/http/auth/guards/roles-permissions';
 import { SupabaseAuthGuard } from './infrastructure/http/auth/guards/supabase-auth';
 import { AuthSupabaseRepository } from './infrastructure/persistence/supabase/repositories/auth-supabase';
 import { LandingSupabaseRepository } from './infrastructure/persistence/supabase/repositories/landing-supabase';
+import { PublicationSupabaseRepository } from './infrastructure/persistence/supabase/repositories/publication-supabase';
 import { SupabaseModule } from './infrastructure/persistence/supabase/supabase.module';
 import { UserSupabaseRepository } from './infrastructure/persistence/supabase/repositories/user-supabase';
 
@@ -48,6 +63,8 @@ import { UserSupabaseRepository } from './infrastructure/persistence/supabase/re
     UsersController,
     PublicLandingController,
     AdminLandingController,
+    PublicPublicationsController,
+    AdminPublicationsController,
   ],
   providers: [
     CreateOperatorUseCase,
@@ -70,6 +87,17 @@ import { UserSupabaseRepository } from './infrastructure/persistence/supabase/re
     DeleteHeroCardUseCase,
     DeleteLandingImpactBlockUseCase,
     DeleteLandingInfoCardUseCase,
+    GetPublicPublicationCategoriesUseCase,
+    GetAdminPublicationCategoriesUseCase,
+    GetPublicPublicationsUseCase,
+    GetAdminPublicationsUseCase,
+    GetPublicPublicationBySlugUseCase,
+    CreatePublicationCategoryUseCase,
+    UpdatePublicationCategoryUseCase,
+    DeletePublicationCategoryUseCase,
+    CreatePublicationUseCase,
+    UpdatePublicationUseCase,
+    DeletePublicationUseCase,
     SupabaseAuthGuard,
     RolesPermissionsGuard,
     {
@@ -83,6 +111,10 @@ import { UserSupabaseRepository } from './infrastructure/persistence/supabase/re
     {
       provide: LANDING_REPOSITORY,
       useClass: LandingSupabaseRepository,
+    },
+    {
+      provide: PUBLICATION_REPOSITORY,
+      useClass: PublicationSupabaseRepository,
     },
   ],
 })

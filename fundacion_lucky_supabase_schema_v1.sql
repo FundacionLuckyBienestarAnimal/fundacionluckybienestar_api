@@ -1317,21 +1317,27 @@ GRANT SELECT ON
     public.landing_sections,
     public.hero_cards,
     public.landing_impact_blocks,
-    public.landing_info_cards
+    public.landing_info_cards,
+    public.publication_categories,
+    public.publications
 TO anon, authenticated;
 
 GRANT INSERT, UPDATE, DELETE ON
     public.landing_sections,
     public.hero_cards,
     public.landing_impact_blocks,
-    public.landing_info_cards
+    public.landing_info_cards,
+    public.publication_categories,
+    public.publications
 TO authenticated;
 
 GRANT ALL ON
     public.landing_sections,
     public.hero_cards,
     public.landing_impact_blocks,
-    public.landing_info_cards
+    public.landing_info_cards,
+    public.publication_categories,
+    public.publications
 TO service_role;
 
 -- Lectura pública básica.
@@ -1785,7 +1791,23 @@ GRANT ALL ON
   public.landing_info_cards
 TO service_role;
 
+---permiso publicacion}
+GRANT USAGE ON SCHEMA public TO anon, authenticated, service_role;
 
+GRANT SELECT ON
+  public.publication_categories,
+  public.publications
+TO anon, authenticated;
+
+GRANT INSERT, UPDATE, DELETE ON
+  public.publication_categories,
+  public.publications
+TO authenticated;
+
+GRANT ALL ON
+  public.publication_categories,
+  public.publications
+TO service_role;
 
 
 
