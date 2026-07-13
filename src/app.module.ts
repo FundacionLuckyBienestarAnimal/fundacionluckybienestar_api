@@ -34,6 +34,32 @@ import { CreateOperatorUseCase } from './application/use-cases/admin/create-oper
 import { GetCurrentUserUseCase } from './application/use-cases/auth/get-current-user';
 import { LoginUserUseCase } from './application/use-cases/auth/login-user';
 import { RegisterUserUseCase } from './application/use-cases/auth/register-user';
+import {
+  AssignRolePermissionUseCase,
+  AssignUserBadgeUseCase,
+  CreateAvatarUseCase,
+  CreateBadgeUseCase,
+  CreatePermissionUseCase,
+  CreateRoleUseCase,
+  DeleteAvatarUseCase,
+  DeleteBadgeUseCase,
+  DeletePermissionUseCase,
+  DeleteRoleUseCase,
+  GetAdminAvatarsUseCase,
+  GetAdminBadgesUseCase,
+  GetPermissionsUseCase,
+  GetPublicAvatarsUseCase,
+  GetPublicBadgesUseCase,
+  GetRolePermissionsUseCase,
+  GetRolesUseCase,
+  GetUserBadgesUseCase,
+  RemoveRolePermissionUseCase,
+  RemoveUserBadgeUseCase,
+  UpdateAvatarUseCase,
+  UpdateBadgeUseCase,
+  UpdatePermissionUseCase,
+  UpdateRoleUseCase,
+} from './application/use-cases/identity-management/identity-management';
 import { CreateHeroCardUseCase } from './application/use-cases/landing/create-hero-card';
 import { CreateLandingImpactBlockUseCase } from './application/use-cases/landing/create-impact-block';
 import { CreateLandingInfoCardUseCase } from './application/use-cases/landing/create-info-card';
@@ -83,6 +109,7 @@ import { UpdateMyProfileUseCase } from './application/use-cases/users/update-my-
 import { ANIMAL_REPOSITORY } from './domain/ports/output/animal-repository';
 import { ADOPTION_REPOSITORY } from './domain/ports/output/adoption-repository';
 import { AUTH_REPOSITORY } from './domain/ports/output/auth-repository';
+import { IDENTITY_MANAGEMENT_REPOSITORY } from './domain/ports/output/identity-management-repository';
 import { LANDING_REPOSITORY } from './domain/ports/output/landing-repository';
 import { MEDIA_REPOSITORY } from './domain/ports/output/media-repository';
 import { PUBLICATION_REPOSITORY } from './domain/ports/output/publication-repository';
@@ -92,6 +119,7 @@ import { VOLUNTEER_REPOSITORY } from './domain/ports/output/volunteer-repository
 import { AdminLandingController } from './infrastructure/controllers/admin/landing';
 import { AdminAdoptionsController } from './infrastructure/controllers/admin/adoptions';
 import { AdminAnimalsController } from './infrastructure/controllers/admin/animals';
+import { AdminIdentityManagementController } from './infrastructure/controllers/admin/identity-management';
 import { AdminMediaController } from './infrastructure/controllers/admin/media';
 import { AdminPublicationsController } from './infrastructure/controllers/admin/publications';
 import { AdminSettingsController } from './infrastructure/controllers/admin/settings';
@@ -102,6 +130,7 @@ import { AdoptionsController } from './infrastructure/controllers/adoptions';
 import { PublicLandingController } from './infrastructure/controllers/public/landing';
 import { PublicAdoptionsController } from './infrastructure/controllers/public/adoptions';
 import { PublicAnimalsController } from './infrastructure/controllers/public/animals';
+import { PublicIdentityManagementController } from './infrastructure/controllers/public/identity-management';
 import { PublicPublicationsController } from './infrastructure/controllers/public/publications';
 import { PublicSettingsController } from './infrastructure/controllers/public/settings';
 import { PublicVolunteersController } from './infrastructure/controllers/public/volunteers';
@@ -112,6 +141,7 @@ import { SupabaseAuthGuard } from './infrastructure/http/auth/guards/supabase-au
 import { AuthSupabaseRepository } from './infrastructure/persistence/supabase/repositories/auth-supabase';
 import { AdoptionSupabaseRepository } from './infrastructure/persistence/supabase/repositories/adoption-supabase';
 import { AnimalSupabaseRepository } from './infrastructure/persistence/supabase/repositories/animal-supabase';
+import { IdentityManagementSupabaseRepository } from './infrastructure/persistence/supabase/repositories/identity-management-supabase';
 import { LandingSupabaseRepository } from './infrastructure/persistence/supabase/repositories/landing-supabase';
 import { MediaSupabaseRepository } from './infrastructure/persistence/supabase/repositories/media-supabase';
 import { PublicationSupabaseRepository } from './infrastructure/persistence/supabase/repositories/publication-supabase';
@@ -146,6 +176,8 @@ import { VolunteerSupabaseRepository } from './infrastructure/persistence/supaba
     AdminMediaController,
     PublicSettingsController,
     AdminSettingsController,
+    PublicIdentityManagementController,
+    AdminIdentityManagementController,
   ],
   providers: [
     CreateOperatorUseCase,
@@ -228,6 +260,30 @@ import { VolunteerSupabaseRepository } from './infrastructure/persistence/supaba
     CreateFaqItemUseCase,
     UpdateFaqItemUseCase,
     DeleteFaqItemUseCase,
+    GetPublicAvatarsUseCase,
+    GetAdminAvatarsUseCase,
+    CreateAvatarUseCase,
+    UpdateAvatarUseCase,
+    DeleteAvatarUseCase,
+    GetPublicBadgesUseCase,
+    GetAdminBadgesUseCase,
+    CreateBadgeUseCase,
+    UpdateBadgeUseCase,
+    DeleteBadgeUseCase,
+    GetUserBadgesUseCase,
+    AssignUserBadgeUseCase,
+    RemoveUserBadgeUseCase,
+    GetRolesUseCase,
+    CreateRoleUseCase,
+    UpdateRoleUseCase,
+    DeleteRoleUseCase,
+    GetPermissionsUseCase,
+    CreatePermissionUseCase,
+    UpdatePermissionUseCase,
+    DeletePermissionUseCase,
+    GetRolePermissionsUseCase,
+    AssignRolePermissionUseCase,
+    RemoveRolePermissionUseCase,
     SupabaseAuthGuard,
     RolesPermissionsGuard,
     {
@@ -265,6 +321,10 @@ import { VolunteerSupabaseRepository } from './infrastructure/persistence/supaba
     {
       provide: SETTINGS_REPOSITORY,
       useClass: SettingsSupabaseRepository,
+    },
+    {
+      provide: IDENTITY_MANAGEMENT_REPOSITORY,
+      useClass: IdentityManagementSupabaseRepository,
     },
   ],
 })

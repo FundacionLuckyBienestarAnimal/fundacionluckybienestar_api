@@ -1934,6 +1934,45 @@ GRANT ALL ON
   public.social_links,
   public.faq_items
 TO service_role;
+
+--GRANT IDENTIDAD, AVATARES, ROLES, PERMISOS Y BADGES
+GRANT USAGE ON SCHEMA public TO anon, authenticated, service_role;
+
+GRANT SELECT ON
+  public.avatar_options,
+  public.badges
+TO anon, authenticated;
+
+GRANT SELECT ON
+  public.user_badges,
+  public.roles,
+  public.permissions,
+  public.role_permissions,
+  public.user_roles
+TO authenticated;
+
+GRANT INSERT, UPDATE, DELETE ON
+  public.avatar_options,
+  public.badges,
+  public.user_badges,
+  public.roles,
+  public.permissions,
+  public.role_permissions,
+  public.user_roles
+TO authenticated;
+
+GRANT ALL ON
+  public.avatar_options,
+  public.badges,
+  public.user_badges,
+  public.roles,
+  public.permissions,
+  public.role_permissions,
+  public.user_roles
+TO service_role;
+
+
+
 SELECT
   p.id,
   p.first_names,

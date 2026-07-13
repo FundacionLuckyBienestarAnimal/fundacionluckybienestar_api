@@ -34,6 +34,65 @@ export type RolePermissionRow = {
   } | null;
 };
 
+export type AvatarOptionRow = {
+  id: string;
+  key: string;
+  name: string;
+  image_url: string;
+  is_default: boolean;
+  is_active: boolean;
+  order_index: number;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type BadgeRow = {
+  id: string;
+  key: string;
+  name: string;
+  description: string | null;
+  icon: string | null;
+  is_active: boolean;
+  order_index: number;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type UserBadgeRow = {
+  id: string;
+  user_id: string;
+  badge_id: string;
+  source_module: string | null;
+  source_id: string | null;
+  awarded_at: string;
+  awarded_by: string | null;
+  badges?: BadgeRow | null;
+};
+
+export type ManagedRoleRow = {
+  key: string;
+  name: string;
+  description: string | null;
+  is_internal: boolean;
+  created_at: string;
+};
+
+export type ManagedPermissionRow = {
+  key: string;
+  module: string;
+  description: string;
+  created_at: string;
+};
+
+export type ManagedRolePermissionRow = {
+  role_key: string;
+  permission_key: string;
+  created_at: string;
+  permissions?: ManagedPermissionRow | null;
+};
+
 export type MediaAssetRow = {
   id: string;
   bucket: string;
