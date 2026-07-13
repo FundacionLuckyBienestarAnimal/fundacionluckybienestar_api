@@ -188,3 +188,42 @@ export type AnimalCharacteristicRow = {
   updated_at: string;
   deleted_at: string | null;
 };
+
+export type HousingTypeRow = {
+  id: string;
+  key: string;
+  name: string;
+  description: string | null;
+  requires_other_detail: boolean;
+  is_active: boolean;
+  order_index: number;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type AdoptionApplicationRow = {
+  id: string;
+  user_id: string;
+  animal_id: string;
+  housing_type_id: string;
+  housing_other_detail: string | null;
+  adoption_reason: string;
+  status:
+    | 'submitted'
+    | 'under_review'
+    | 'in_process'
+    | 'completed'
+    | 'rejected'
+    | 'cancelled';
+  reviewed_by: string | null;
+  review_message: string | null;
+  submitted_at: string;
+  reviewed_at: string | null;
+  process_started_at: string | null;
+  completed_at: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+  housing_types?: HousingTypeRow | null;
+};

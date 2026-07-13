@@ -1839,6 +1839,41 @@ GRANT ALL ON storage.objects TO authenticated, service_role;
 GRANT ALL ON storage.buckets TO authenticated, service_role;
 
 
+--GRANT HOUSING ADOP
+GRANT USAGE ON SCHEMA public TO anon, authenticated, service_role;
+
+GRANT SELECT ON
+  public.housing_types,
+  public.adoption_applications,
+  public.adoption_status_history
+TO anon, authenticated;
+
+GRANT INSERT, UPDATE, DELETE ON
+  public.housing_types,
+  public.adoption_applications,
+  public.adoption_status_history
+TO authenticated;
+
+GRANT ALL ON
+  public.housing_types,
+  public.adoption_applications,
+  public.adoption_status_history
+TO service_role;
+
+--GRANT TABLAS RELACIONES
+GRANT SELECT ON
+  public.animal_profiles,
+  public.profiles
+TO anon, authenticated;
+
+GRANT ALL ON
+  public.animal_profiles,
+  public.profiles
+TO service_role;
+
+
+
+
 ---VALIDAR ROL 
 SELECT
   p.id,
