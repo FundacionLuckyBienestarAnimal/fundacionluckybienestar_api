@@ -8,7 +8,10 @@ import { Permission } from '../../../../domain/models/access-control/permission'
 import { Role } from '../../../../domain/models/access-control/role';
 import { CurrentUser } from '../../../../domain/models/users/current-user';
 import { Profile } from '../../../../domain/models/users/profile';
-import { UserRepositoryPort } from '../../../../domain/ports/output/user-repository';
+import {
+  UpdateProfileInput,
+  UserRepositoryPort,
+} from '../../../../domain/ports/output/user-repository';
 import { SUPABASE_ADMIN_CLIENT } from '../supabase.tokens';
 import type {
   ProfileRow,
@@ -52,6 +55,45 @@ export class UserSupabaseRepository implements UserRepositoryPort {
       roles,
       permissions,
     };
+  }
+
+  async findProfileByUserId(userId: string): Promise<Profile> {
+    const profile = await this.findProfileById(userId);
+
+    if (!profile) {
+      throw new InternalServerErrorException('Profile not found');
+    }
+
+    return profile;
+  }
+
+  async updateProfileByUserId(
+    userId: string,
+    input: UpdateProfileInput,
+  ): Promise<Profile> {
+    const { data, error } = await this.supabase
+      .from('profiles')
+      .update({
+        avatar_id: input.avatarId,
+        first_names: input.firstNames,
+        last_names: input.lastNames,
+        phone: input.phone,
+        birth_date: input.birthDate,
+        address: input.address,
+        housing_sector: input.housingSector,
+      })
+      .eq('id', userId)
+      .is('deleted_at', null)
+      .select(
+        'id, avatar_id, first_names, last_names, phone, birth_date, address, housing_sector, status, user_type, created_at, updated_at',
+      )
+      .single<ProfileRow>();
+
+    if (error) {
+      throw new InternalServerErrorException(error.message);
+    }
+
+    return this.toProfile(data);
   }
 
   private async findProfileById(userId: string): Promise<Profile | null> {
