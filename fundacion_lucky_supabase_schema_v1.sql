@@ -1320,7 +1320,10 @@ GRANT SELECT ON
     public.landing_impact_blocks,
     public.landing_info_cards,
     public.publication_categories,
-    public.publications
+    public.publications,
+    public.animal_profiles,
+    public.animal_images,
+    public.animal_characteristics
 TO anon, authenticated;
 
 GRANT INSERT, UPDATE, DELETE ON
@@ -1330,7 +1333,10 @@ GRANT INSERT, UPDATE, DELETE ON
     public.landing_impact_blocks,
     public.landing_info_cards,
     public.publication_categories,
-    public.publications
+    public.publications,
+    public.animal_profiles,
+    public.animal_images,
+    public.animal_characteristics
 TO authenticated;
 
 GRANT ALL ON
@@ -1340,7 +1346,10 @@ GRANT ALL ON
     public.landing_impact_blocks,
     public.landing_info_cards,
     public.publication_categories,
-    public.publications
+    public.publications,
+    public.animal_profiles,
+    public.animal_images,
+    public.animal_characteristics
 TO service_role;
 
 -- Lectura pública básica.

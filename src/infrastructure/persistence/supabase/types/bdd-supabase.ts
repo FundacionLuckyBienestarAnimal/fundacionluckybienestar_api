@@ -145,3 +145,46 @@ export type PublicationRow = {
   deleted_at: string | null;
   publication_categories?: PublicationCategoryRow | null;
 };
+
+export type AnimalProfileRow = {
+  id: string;
+  created_by: string | null;
+  name: string;
+  slug: string;
+  species: 'dog' | 'cat' | 'other';
+  sex: 'male' | 'female' | 'unknown';
+  size: 'small' | 'medium' | 'large';
+  age_label: string | null;
+  status: 'available' | 'in_process' | 'sponsored' | 'adopted' | 'hidden';
+  is_sterilized: boolean;
+  description: string | null;
+  is_featured: boolean;
+  is_active: boolean;
+  order_index: number;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
+export type AnimalImageRow = {
+  id: string;
+  animal_id: string;
+  media_id: string;
+  is_primary: boolean;
+  order_index: number;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+  media_assets?: MediaAssetRow | null;
+};
+
+export type AnimalCharacteristicRow = {
+  id: string;
+  animal_id: string;
+  label: string;
+  order_index: number;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};

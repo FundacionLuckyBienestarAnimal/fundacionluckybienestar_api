@@ -1,5 +1,16 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { AddAnimalCharacteristicUseCase } from './application/use-cases/animals/add-animal-characteristic';
+import { AddAnimalImageUseCase } from './application/use-cases/animals/add-animal-image';
+import { CreateAnimalUseCase } from './application/use-cases/animals/create-animal';
+import { DeleteAnimalCharacteristicUseCase } from './application/use-cases/animals/delete-animal-characteristic';
+import { DeleteAnimalImageUseCase } from './application/use-cases/animals/delete-animal-image';
+import { DeleteAnimalUseCase } from './application/use-cases/animals/delete-animal';
+import { GetAdminAnimalsUseCase } from './application/use-cases/animals/get-admin-animals';
+import { GetPublicAnimalBySlugUseCase } from './application/use-cases/animals/get-public-animal-by-slug';
+import { GetPublicAnimalsUseCase } from './application/use-cases/animals/get-public-animals';
+import { UpdateAnimalCharacteristicUseCase } from './application/use-cases/animals/update-animal-characteristic';
+import { UpdateAnimalUseCase } from './application/use-cases/animals/update-animal';
 import { CreateOperatorUseCase } from './application/use-cases/admin/create-operator';
 import { GetCurrentUserUseCase } from './application/use-cases/auth/get-current-user';
 import { LoginUserUseCase } from './application/use-cases/auth/login-user';
@@ -35,22 +46,26 @@ import { UpdatePublicationCategoryUseCase } from './application/use-cases/public
 import { UpdatePublicationUseCase } from './application/use-cases/publications/update-publication';
 import { GetMyProfileUseCase } from './application/use-cases/users/get-my-profile';
 import { UpdateMyProfileUseCase } from './application/use-cases/users/update-my-profile';
+import { ANIMAL_REPOSITORY } from './domain/ports/output/animal-repository';
 import { AUTH_REPOSITORY } from './domain/ports/output/auth-repository';
 import { LANDING_REPOSITORY } from './domain/ports/output/landing-repository';
 import { MEDIA_REPOSITORY } from './domain/ports/output/media-repository';
 import { PUBLICATION_REPOSITORY } from './domain/ports/output/publication-repository';
 import { USER_REPOSITORY } from './domain/ports/output/user-repository';
 import { AdminLandingController } from './infrastructure/controllers/admin/landing';
+import { AdminAnimalsController } from './infrastructure/controllers/admin/animals';
 import { AdminMediaController } from './infrastructure/controllers/admin/media';
 import { AdminPublicationsController } from './infrastructure/controllers/admin/publications';
 import { AdminUsersController } from './infrastructure/controllers/admin/users';
 import { AuthController } from './infrastructure/controllers/auth';
 import { PublicLandingController } from './infrastructure/controllers/public/landing';
+import { PublicAnimalsController } from './infrastructure/controllers/public/animals';
 import { PublicPublicationsController } from './infrastructure/controllers/public/publications';
 import { UsersController } from './infrastructure/controllers/users';
 import { RolesPermissionsGuard } from './infrastructure/http/auth/guards/roles-permissions';
 import { SupabaseAuthGuard } from './infrastructure/http/auth/guards/supabase-auth';
 import { AuthSupabaseRepository } from './infrastructure/persistence/supabase/repositories/auth-supabase';
+import { AnimalSupabaseRepository } from './infrastructure/persistence/supabase/repositories/animal-supabase';
 import { LandingSupabaseRepository } from './infrastructure/persistence/supabase/repositories/landing-supabase';
 import { MediaSupabaseRepository } from './infrastructure/persistence/supabase/repositories/media-supabase';
 import { PublicationSupabaseRepository } from './infrastructure/persistence/supabase/repositories/publication-supabase';
@@ -70,6 +85,8 @@ import { UserSupabaseRepository } from './infrastructure/persistence/supabase/re
     UsersController,
     PublicLandingController,
     AdminLandingController,
+    PublicAnimalsController,
+    AdminAnimalsController,
     PublicPublicationsController,
     AdminPublicationsController,
     AdminMediaController,
@@ -81,6 +98,17 @@ import { UserSupabaseRepository } from './infrastructure/persistence/supabase/re
     GetCurrentUserUseCase,
     GetMyProfileUseCase,
     UpdateMyProfileUseCase,
+    GetPublicAnimalsUseCase,
+    GetPublicAnimalBySlugUseCase,
+    GetAdminAnimalsUseCase,
+    CreateAnimalUseCase,
+    UpdateAnimalUseCase,
+    DeleteAnimalUseCase,
+    AddAnimalImageUseCase,
+    DeleteAnimalImageUseCase,
+    AddAnimalCharacteristicUseCase,
+    UpdateAnimalCharacteristicUseCase,
+    DeleteAnimalCharacteristicUseCase,
     GetPublicLandingUseCase,
     GetAdminLandingUseCase,
     CreateLandingSectionUseCase,
@@ -131,6 +159,10 @@ import { UserSupabaseRepository } from './infrastructure/persistence/supabase/re
     {
       provide: MEDIA_REPOSITORY,
       useClass: MediaSupabaseRepository,
+    },
+    {
+      provide: ANIMAL_REPOSITORY,
+      useClass: AnimalSupabaseRepository,
     },
   ],
 })
