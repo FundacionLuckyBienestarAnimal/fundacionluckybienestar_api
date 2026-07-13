@@ -34,6 +34,19 @@ export type RolePermissionRow = {
   } | null;
 };
 
+export type MediaAssetRow = {
+  id: string;
+  bucket: string;
+  path: string;
+  public_url: string | null;
+  alt_text: string | null;
+  media_type: 'image' | 'video' | 'document' | 'other';
+  uploaded_by: string | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+};
+
 export type LandingSectionRow = {
   id: string;
   key: string;

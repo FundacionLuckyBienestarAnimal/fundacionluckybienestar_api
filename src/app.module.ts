@@ -18,6 +18,10 @@ import { UpdateHeroCardUseCase } from './application/use-cases/landing/update-he
 import { UpdateLandingImpactBlockUseCase } from './application/use-cases/landing/update-impact-block';
 import { UpdateLandingInfoCardUseCase } from './application/use-cases/landing/update-info-card';
 import { UpdateLandingSectionUseCase } from './application/use-cases/landing/update-section';
+import { DeleteMediaUseCase } from './application/use-cases/media/delete-media';
+import { GetMediaUseCase } from './application/use-cases/media/get-media';
+import { UpdateMediaUseCase } from './application/use-cases/media/update-media';
+import { UploadMediaUseCase } from './application/use-cases/media/upload-media';
 import { CreatePublicationCategoryUseCase } from './application/use-cases/publications/create-category';
 import { CreatePublicationUseCase } from './application/use-cases/publications/create-publication';
 import { DeletePublicationCategoryUseCase } from './application/use-cases/publications/delete-category';
@@ -33,9 +37,11 @@ import { GetMyProfileUseCase } from './application/use-cases/users/get-my-profil
 import { UpdateMyProfileUseCase } from './application/use-cases/users/update-my-profile';
 import { AUTH_REPOSITORY } from './domain/ports/output/auth-repository';
 import { LANDING_REPOSITORY } from './domain/ports/output/landing-repository';
+import { MEDIA_REPOSITORY } from './domain/ports/output/media-repository';
 import { PUBLICATION_REPOSITORY } from './domain/ports/output/publication-repository';
 import { USER_REPOSITORY } from './domain/ports/output/user-repository';
 import { AdminLandingController } from './infrastructure/controllers/admin/landing';
+import { AdminMediaController } from './infrastructure/controllers/admin/media';
 import { AdminPublicationsController } from './infrastructure/controllers/admin/publications';
 import { AdminUsersController } from './infrastructure/controllers/admin/users';
 import { AuthController } from './infrastructure/controllers/auth';
@@ -46,6 +52,7 @@ import { RolesPermissionsGuard } from './infrastructure/http/auth/guards/roles-p
 import { SupabaseAuthGuard } from './infrastructure/http/auth/guards/supabase-auth';
 import { AuthSupabaseRepository } from './infrastructure/persistence/supabase/repositories/auth-supabase';
 import { LandingSupabaseRepository } from './infrastructure/persistence/supabase/repositories/landing-supabase';
+import { MediaSupabaseRepository } from './infrastructure/persistence/supabase/repositories/media-supabase';
 import { PublicationSupabaseRepository } from './infrastructure/persistence/supabase/repositories/publication-supabase';
 import { SupabaseModule } from './infrastructure/persistence/supabase/supabase.module';
 import { UserSupabaseRepository } from './infrastructure/persistence/supabase/repositories/user-supabase';
@@ -65,6 +72,7 @@ import { UserSupabaseRepository } from './infrastructure/persistence/supabase/re
     AdminLandingController,
     PublicPublicationsController,
     AdminPublicationsController,
+    AdminMediaController,
   ],
   providers: [
     CreateOperatorUseCase,
@@ -87,6 +95,10 @@ import { UserSupabaseRepository } from './infrastructure/persistence/supabase/re
     DeleteHeroCardUseCase,
     DeleteLandingImpactBlockUseCase,
     DeleteLandingInfoCardUseCase,
+    GetMediaUseCase,
+    UploadMediaUseCase,
+    UpdateMediaUseCase,
+    DeleteMediaUseCase,
     GetPublicPublicationCategoriesUseCase,
     GetAdminPublicationCategoriesUseCase,
     GetPublicPublicationsUseCase,
@@ -115,6 +127,10 @@ import { UserSupabaseRepository } from './infrastructure/persistence/supabase/re
     {
       provide: PUBLICATION_REPOSITORY,
       useClass: PublicationSupabaseRepository,
+    },
+    {
+      provide: MEDIA_REPOSITORY,
+      useClass: MediaSupabaseRepository,
     },
   ],
 })

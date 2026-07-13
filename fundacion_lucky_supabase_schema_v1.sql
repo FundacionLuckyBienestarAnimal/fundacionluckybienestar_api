@@ -1314,6 +1314,7 @@ END $$;
 GRANT USAGE ON SCHEMA public TO anon, authenticated, service_role;
 
 GRANT SELECT ON
+    public.media_assets,
     public.landing_sections,
     public.hero_cards,
     public.landing_impact_blocks,
@@ -1323,6 +1324,7 @@ GRANT SELECT ON
 TO anon, authenticated;
 
 GRANT INSERT, UPDATE, DELETE ON
+    public.media_assets,
     public.landing_sections,
     public.hero_cards,
     public.landing_impact_blocks,
@@ -1332,6 +1334,7 @@ GRANT INSERT, UPDATE, DELETE ON
 TO authenticated;
 
 GRANT ALL ON
+    public.media_assets,
     public.landing_sections,
     public.hero_cards,
     public.landing_impact_blocks,
@@ -1810,7 +1813,21 @@ GRANT ALL ON
 TO service_role;
 
 
+--GRANT MEDIA Y STORAGE
+GRANT USAGE ON SCHEMA public TO anon, authenticated, service_role;
 
+GRANT SELECT ON public.media_assets
+TO anon, authenticated;
+
+GRANT INSERT, UPDATE, DELETE ON public.media_assets
+TO authenticated;
+
+GRANT ALL ON public.media_assets
+TO service_role;
+
+---STORGAE
+GRANT ALL ON storage.objects TO authenticated, service_role;
+GRANT ALL ON storage.buckets TO authenticated, service_role;
 
 
 ---VALIDAR ROL 
