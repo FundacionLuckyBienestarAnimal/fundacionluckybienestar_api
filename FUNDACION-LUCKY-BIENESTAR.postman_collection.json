@@ -1,0 +1,3853 @@
+{
+  "info": {
+    "_postman_id": "4fe8f9de-b5ba-4011-97e3-0d2266896f28",
+    "name": "FUNDACION-LUCKY-BIENESTAR",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48819282",
+    "_collection_link": "https://go.postman.co/collection/48819282-4fe8f9de-b5ba-4011-97e3-0d2266896f28?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "00 - TOKENS DE PRUEBA",
+      "item": [
+        {
+          "name": "01 - Token usuario publico",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": " application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"nicole_castillo@lucky.com\",\r\n  \"password\": \"12345678\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "02 - Token administrador CRM",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": " application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "// {\r\n//   \"email\": \"admin@lucky.com\",\r\n//   \"password\": \"12345678\"\r\n// }\r\n{\r\n  \"email\": \"appbienestaranimal@hotmail.com\",\r\n  \"password\": \"12345678\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "03 - Token operador CRM",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": " application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"operador@lucky.com\",\r\n    \"password\": \"12345678\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "01 - ADMIN CRM / BACKOFFICE",
+      "item": [
+        {
+          "name": "01 - Usuarios CRM / Crear operador - Solo Admin",
+          "item": [
+            {
+              "name": "01 - Admin - Crear operador",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": " application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"email\": \"operador@lucky.com\",\r\n  \"password\": \"12345678\",\r\n  \"firstNames\": \"Operador\",\r\n  \"lastNames\": \"Lucky\",\r\n  \"phone\": \"0999999999\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/admin/users/operators",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "admin",
+                    "users",
+                    "operators"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "02 - Avatares de perfil - Solo Admin",
+          "item": [
+            {
+              "name": "01 - Admin - Crear Avatar Option",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"avatar_dog\",\n  \"name\": \"Avatar perro\",\n  \"imageUrl\": \"https://rnawpguxsuquagvkeqoi.supabase.co/storage/v1/object/public/media-assets/avatars/avatar_dog.jpeg\",\n  \"isDefault\": false,\n  \"isActive\": true,\n  \"orderIndex\": 1\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/admin/identity/avatar-options",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "identity",
+                    "avatar-options"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "02 - Admin - Obtener Avatar Options",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/identity/avatar-options",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "identity",
+                    "avatar-options"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "03 - Admin - Actualizar Avatar Option",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Lucky probemos\",\n  \"orderIndex\": 0\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/admin/identity/avatar-options/{{avatarId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "identity",
+                    "avatar-options",
+                    "{{avatarId}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "04 - Admin - Eliminar Avatar Option",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/identity/avatar-options/{{avatarId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "identity",
+                    "avatar-options",
+                    "{{avatarId}}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "03 - Badges / Catalogo de insignias - Solo Admin",
+          "item": [
+            {
+              "name": "01 - Admin - Crear Insignia (Badge)",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"helper\",\n  \"name\": \"Ayudante Lucky\",\n  \"description\": \"Usuario que ayuda en actividades de la fundacion.\",\n  \"icon\": \"Heart\",\n  \"isActive\": true,\n  \"orderIndex\": 4\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/admin/identity/badges",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "identity",
+                    "badges"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "02 - Admin - Listar Insignias (Badges)",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/identity/badges",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "identity",
+                    "badges"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "03 - Admin - Actualizar Badge",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"helper\",\n  \"name\": \"Ayudante Lucky\",\n  \"description\": \"Usuario que ayuda con el aseo de los patios.\",\n  \"icon\": \"Heart\",\n  \"isActive\": true,\n  \"orderIndex\": 4\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/admin/identity/badges/6daa2693-2e42-46b4-be83-a728abf2fabc",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "identity",
+                    "badges",
+                    "6daa2693-2e42-46b4-be83-a728abf2fabc"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "04 - Admin - Eliminar Badge - Logico",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/identity/badges/4660f977-fe0c-4a56-b9e4-be01f627b425",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "identity",
+                    "badges",
+                    "4660f977-fe0c-4a56-b9e4-be01f627b425"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "04 - Badges de usuario - Solo Admin",
+          "item": [
+            {
+              "name": "01 - Admin - Asigna insignia(Badge) a usuario",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userId\": \"{{userId}}\",\n  \"badgeId\": \"{{badgeId}}\",\n  \"sourceModule\": \"manual\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/admin/identity/users/badges",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "identity",
+                    "users",
+                    "badges"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "02 - Admin - Obtiene el usuario con insignia (Badge)",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/identity/users/{{userId}}/badges",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "identity",
+                    "users",
+                    "{{userId}}",
+                    "badges"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "03 - Admin -Eliminar Insignia a User - Fisico",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/identity/users/badges/{{userBadgeId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "identity",
+                    "users",
+                    "badges",
+                    "{{userBadgeId}}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "05 - Roles - Solo Admin",
+          "item": [
+            {
+              "name": "01 - Admin - Listar Roles",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/identity/roles",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "identity",
+                    "roles"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "02 - Admin - Crear Rol",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"coordinator\",\n  \"name\": \"Coordinador\",\n  \"description\": \"Rol para coordinar operaciones.\",\n  \"isInternal\": true\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/admin/identity/roles",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "identity",
+                    "roles"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "03 - Admin - Actualizar Rol",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Coordinador\",\n  \"description\": \"Rol para coordinar operaciones.\",\n  \"isInternal\": true\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/admin/identity/roles/:key",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "identity",
+                    "roles",
+                    ":key"
+                  ],
+                  "variable": [
+                    {
+                      "key": "key",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "06 - Permisos y permisos por rol - Solo Admin",
+          "item": [
+            {
+              "name": "01 - Admin - Listar permisos",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/identity/permissions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "identity",
+                    "permissions"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "02 - Admin - Crear permiso",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"reports.read\",\n  \"module\": \"reports\",\n  \"description\": \"Permite ver reportes del CRM.\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/admin/identity/permissions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "identity",
+                    "permissions"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "03 - Admin - Actualizar permiso",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"module\": \"reports\",\n  \"description\": \"Permite consultar reportes administrativos.\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/admin/identity/permissions/:key",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "identity",
+                    "permissions",
+                    ":key"
+                  ],
+                  "variable": [
+                    {
+                      "key": "key",
+                      "value": "reports.read"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "04 - Admin - Ver permisos de un rol",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/identity/roles/:roleKey/permissions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "identity",
+                    "roles",
+                    ":roleKey",
+                    "permissions"
+                  ],
+                  "variable": [
+                    {
+                      "key": "roleKey",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "05 - Admin - Asignar permiso a un rol",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"permissionKey\": \"content.manage\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/admin/identity/roles/coordinator/permissions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "identity",
+                    "roles",
+                    "coordinator",
+                    "permissions"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "06 - Admin - Quitar permiso de un rol",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/identity/roles/:roleKey/permissions/:permissionKey",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "identity",
+                    "roles",
+                    ":roleKey",
+                    "permissions",
+                    ":permissionKey"
+                  ],
+                  "variable": [
+                    {
+                      "key": "roleKey",
+                      "value": ""
+                    },
+                    {
+                      "key": "permissionKey",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "07 - Multimedia / Storage bucket media-assets - Admin/Operador",
+          "item": [
+            {
+              "name": "01 - Subir archivo al bucket",
+              "item": [
+                {
+                  "name": "01 - Admin - Subir Media",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "key": "file",
+                          "type": "file",
+                          "src": "/C:/Users/Usuario/Pictures/eitan/_MG_0941-2 copia.jpg"
+                        },
+                        {
+                          "key": "altText",
+                          "value": "Imagen subida desde Postman",
+                          "type": "text"
+                        },
+                        {
+                          "key": "mediaType",
+                          "value": "image",
+                          "type": "text"
+                        },
+                        {
+                          "key": "folder",
+                          "value": "avatars",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/media/upload",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "media",
+                        "upload"
+                      ]
+                    },
+                    "description": "Sube una imagen al bucket media-assets y crea el registro en media_assets. En file selecciona una imagen jpeg/png/webp/gif. Copia el id de respuesta en mediaId."
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "02 - Consultar multimedia",
+              "item": [
+                {
+                  "name": "01 - Admin - Listar Archivos",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/media",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "media"
+                      ]
+                    },
+                    "description": "Lista media_assets no eliminados."
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "03 - Actualizar multimedia",
+              "item": [
+                {
+                  "name": "01 - Admin - Actualizar Media",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"altText\": \"Texto alternativo actualizado\",\n  \"mediaType\": \"image\"\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/media/{{mediaId}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "media",
+                        "{{mediaId}}"
+                      ]
+                    },
+                    "description": "Actualiza metadata del archivo, no reemplaza el archivo fisico."
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "04 - Eliminar multimedia",
+              "item": [
+                {
+                  "name": "01 - Admin - Eliminar Media",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/media/{{mediaId}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "media",
+                        "{{mediaId}}"
+                      ]
+                    },
+                    "description": "Elimina logicamente el registro en media_assets. No borra el archivo fisico del bucket."
+                  },
+                  "response": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "08 - Landing CRM - Admin/Operador",
+          "item": [
+            {
+              "name": "01 - Consulta admin",
+              "item": [
+                {
+                  "name": "01 - Landing - Admin Obtener",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/landing",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "landing"
+                      ]
+                    },
+                    "description": "Obtiene la landing para el backoffice. Necesita token admin con permiso content.manage."
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "02 - Secciones landing",
+              "item": [
+                {
+                  "name": "01 - Landing - Crear Section",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"key\": \"home_hero\",\n  \"title\": \"Fundacion Lucky\",\n  \"highlightedText\": \"Bienestar Animal\",\n  \"subtitle\": \"Ayudamos a animales rescatados a encontrar una familia.\",\n  \"mainMediaId\": null,\n  \"isActive\": true,\n  \"orderIndex\": 1\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/landing/sections",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "landing",
+                        "sections"
+                      ]
+                    },
+                    "description": "Crea una seccion principal. Copia el id de respuesta y pegalo en la variable sectionId."
+                  },
+                  "response": []
+                },
+                {
+                  "name": "02 - Landing - Actualizar Section",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"Fundacion Lucky Actualizada\",\n  \"highlightedText\": \"Rescate y adopcion\",\n  \"subtitle\": \"Contenido actualizado desde el CRM.\",\n  \"isActive\": true,\n  \"orderIndex\": 1\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/landing/sections/{{sectionId}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "landing",
+                        "sections",
+                        "{{sectionId}}"
+                      ]
+                    },
+                    "description": "Actualiza una seccion existente."
+                  },
+                  "response": []
+                },
+                {
+                  "name": "03 - Landing - Eliminar Section",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/landing/sections/{{sectionId}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "landing",
+                        "sections",
+                        "{{sectionId}}"
+                      ]
+                    },
+                    "description": "Elimina logicamente una seccion. Usalo al final, porque las cards dependen de esta seccion."
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "03 - Hero cards",
+              "item": [
+                {
+                  "name": "01 - Landing - Crear Hero Card",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"sectionId\": \"{{sectionId}}\",\n  \"title\": \"Adopta\",\n  \"description\": \"Conoce animales que buscan hogar.\",\n  \"icon\": \"heart\",\n  \"ctaLabel\": \"Ver adopciones\",\n  \"ctaHref\": \"/adopciones\",\n  \"isActive\": true,\n  \"orderIndex\": 1\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/landing/hero-cards",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "landing",
+                        "hero-cards"
+                      ]
+                    },
+                    "description": "Crea una hero card dentro de una seccion. Copia el id de respuesta y pegalo en heroCardId."
+                  },
+                  "response": []
+                },
+                {
+                  "name": "02 - Landing - Actualizar Hero Card",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"Adopta hoy\",\n  \"description\": \"Dale una segunda oportunidad a un animal rescatado.\",\n  \"icon\": \"heart\",\n  \"ctaLabel\": \"Ver animales\",\n  \"ctaHref\": \"/adopciones\",\n  \"isActive\": true,\n  \"orderIndex\": 1\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/landing/hero-cards/{{heroCardId}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "landing",
+                        "hero-cards",
+                        "{{heroCardId}}"
+                      ]
+                    },
+                    "description": "Actualiza una hero card existente."
+                  },
+                  "response": []
+                },
+                {
+                  "name": "03 - Landing - Eliminar Hero Card",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/landing/hero-cards/{{heroCardId}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "landing",
+                        "hero-cards",
+                        "{{heroCardId}}"
+                      ]
+                    },
+                    "description": "Elimina logicamente una hero card: llena deleted_at y pone is_active en false."
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "04 - Bloques de impacto",
+              "item": [
+                {
+                  "name": "01 - Landing - Crear Impact Block",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"sectionId\": \"{{sectionId}}\",\n  \"prefixText\": \"+\",\n  \"metricValue\": 120,\n  \"suffixText\": \"rescatados\",\n  \"description\": \"Animales atendidos por la fundacion.\",\n  \"icon\": \"paw\",\n  \"ctaLabel\": null,\n  \"ctaHref\": null,\n  \"isActive\": true,\n  \"orderIndex\": 1\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/landing/impact-blocks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "landing",
+                        "impact-blocks"
+                      ]
+                    },
+                    "description": "Crea una metrica o bloque de impacto. Copia el id de respuesta y pegalo en impactBlockId."
+                  },
+                  "response": []
+                },
+                {
+                  "name": "02 - Landing - Actualizar Impact Block",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"prefixText\": \"+\",\n  \"metricValue\": 150,\n  \"suffixText\": \"rescatados\",\n  \"description\": \"Animales rescatados y atendidos por la fundacion.\",\n  \"icon\": \"paw\",\n  \"isActive\": true,\n  \"orderIndex\": 1\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/landing/impact-blocks/{{impactBlockId}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "landing",
+                        "impact-blocks",
+                        "{{impactBlockId}}"
+                      ]
+                    },
+                    "description": "Actualiza una metrica o bloque de impacto existente."
+                  },
+                  "response": []
+                },
+                {
+                  "name": "03 - Landing - Eliminar Impact Block",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/landing/impact-blocks/{{impactBlockId}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "landing",
+                        "impact-blocks",
+                        "{{impactBlockId}}"
+                      ]
+                    },
+                    "description": "Elimina logicamente un bloque de impacto."
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "05 - Tarjetas informativas",
+              "item": [
+                {
+                  "name": "01 - Landing - Crear Info Card",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"sectionId\": \"{{sectionId}}\",\n  \"title\": \"Voluntariado\",\n  \"description\": \"Unete como voluntario y ayuda en campanas.\",\n  \"icon\": \"users\",\n  \"ctaLabel\": \"Quiero ayudar\",\n  \"ctaHref\": \"/voluntariado\",\n  \"isActive\": true,\n  \"orderIndex\": 1\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/landing/info-cards",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "landing",
+                        "info-cards"
+                      ]
+                    },
+                    "description": "Crea una tarjeta informativa. Copia el id de respuesta y pegalo en infoCardId."
+                  },
+                  "response": []
+                },
+                {
+                  "name": "02 - Landing - Actualizar Info Card",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"Voluntariado actualizado\",\n  \"description\": \"Participa en campanas, rescates y jornadas de adopcion.\",\n  \"icon\": \"users\",\n  \"ctaLabel\": \"Quiero participar\",\n  \"ctaHref\": \"/voluntariado\",\n  \"isActive\": true,\n  \"orderIndex\": 1\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/landing/info-cards/{{infoCardId}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "landing",
+                        "info-cards",
+                        "{{infoCardId}}"
+                      ]
+                    },
+                    "description": "Actualiza una tarjeta informativa existente."
+                  },
+                  "response": []
+                },
+                {
+                  "name": "03 - Landing - Eliminar Info Card",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/landing/info-cards/{{infoCardId}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "landing",
+                        "info-cards",
+                        "{{infoCardId}}"
+                      ]
+                    },
+                    "description": "Elimina logicamente una info card."
+                  },
+                  "response": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "09 - Publicaciones / Categorias - Admin/Operador",
+          "item": [
+            {
+              "name": "01 - Admin - Obtener Categories",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/publication-categories",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "publication-categories"
+                  ]
+                },
+                "description": "Lista categorias para el CRM/admin."
+              },
+              "response": []
+            },
+            {
+              "name": "02 - Admin - Crear Category",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Campanas\",\n  \"slug\": \"campanas\",\n  \"description\": \"Campanas de rescate, donacion y adopcion.\",\n  \"isActive\": true,\n  \"orderIndex\": 1\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/admin/publication-categories",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "publication-categories"
+                  ]
+                },
+                "description": "Crea una categoria. Copia el id de respuesta y pegalo en categoryId."
+              },
+              "response": []
+            },
+            {
+              "name": "03 - Admin - Actualizar Category",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Campanas actualizadas\",\n  \"description\": \"Contenido de campanas actualizado desde el CRM.\",\n  \"isActive\": true,\n  \"orderIndex\": 1\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/admin/publication-categories/{{categoryId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "publication-categories",
+                    "{{categoryId}}"
+                  ]
+                },
+                "description": "Actualiza una categoria existente."
+              },
+              "response": []
+            },
+            {
+              "name": "04 - Admin - Eliminar Category",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/publication-categories/{{categoryId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "publication-categories",
+                    "{{categoryId}}"
+                  ]
+                },
+                "description": "Elimina logicamente una categoria. Usalo al final."
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "10 - Publicaciones / Contenido - Admin/Operador",
+          "item": [
+            {
+              "name": "01 - Admin - Obtener Publications",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/publications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "publications"
+                  ]
+                },
+                "description": "Lista publicaciones para el CRM/admin, incluyendo borradores y programadas no eliminadas."
+              },
+              "response": []
+            },
+            {
+              "name": "02 - Admin - Crear Publication",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"categoryId\": \"{{categoryId}}\",\n  \"coverMediaId\": null,\n  \"title\": \"Campana de adopcion Julio\",\n  \"slug\": \"campana-adopcion-julio\",\n  \"subtitle\": \"Jornada especial de adopcion responsable\",\n  \"description\": \"Invitamos a la comunidad a conocer animales que buscan hogar.\",\n  \"content\": \"Contenido completo de la campana de adopcion.\",\n  \"type\": \"campaign\",\n  \"status\": \"published\",\n  \"featuredSection\": \"home\",\n  \"eventDate\": \"2026-07-20\",\n  \"dateLabel\": \"Sabado 20 de julio\",\n  \"ctaLabel\": \"Ver campana\",\n  \"isFeatured\": true,\n  \"isActive\": true,\n  \"orderIndex\": 1,\n  \"publishedAt\": \"2026-07-13T00:00:00.000Z\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/admin/publications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "publications"
+                  ]
+                },
+                "description": "Crea una publicacion. Copia el id en publicationId. El slug usado es publicationSlug."
+              },
+              "response": []
+            },
+            {
+              "name": "03 - Admin - Actualizar Publication",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Campana de adopcion Julio actualizada\",\n  \"description\": \"Descripcion actualizada desde el CRM.\",\n  \"status\": \"published\",\n  \"isFeatured\": true,\n  \"isActive\": true,\n  \"orderIndex\": 1\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/admin/publications/{{publicationId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "publications",
+                    "{{publicationId}}"
+                  ]
+                },
+                "description": "Actualiza una publicacion existente."
+              },
+              "response": []
+            },
+            {
+              "name": "04 - Admin - Eliminar Publication",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/publications/{{publicationId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "publications",
+                    "{{publicationId}}"
+                  ]
+                },
+                "description": "Elimina logicamente una publicacion."
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "11 - Catalogo animales - Admin/Operador",
+          "item": [
+            {
+              "name": "01 - Multimedia para animales",
+              "item": [
+                {
+                  "name": "01 - Admin - Upload Animal Image Media",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "key": "file",
+                          "type": "file",
+                          "src": "/C:/Users/Usuario/Downloads/prueba.png"
+                        },
+                        {
+                          "key": "altText",
+                          "value": "Foto principal del animal",
+                          "type": "text"
+                        },
+                        {
+                          "key": "mediaType",
+                          "value": "image",
+                          "type": "text"
+                        },
+                        {
+                          "key": "folder",
+                          "value": "animals",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/media/upload",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "media",
+                        "upload"
+                      ]
+                    },
+                    "description": "Sube una imagen al bucket y crea media_assets. Copia el id de respuesta en mediaId."
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "02 - Crear animal",
+              "item": [
+                {
+                  "name": "01 - Admin - Crear Animal",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"Lucky Perrito\",\n  \"slug\": \"lucky-perrito\",\n  \"species\": \"dog\",\n  \"sex\": \"male\",\n  \"size\": \"medium\",\n  \"ageLabel\": \"2 anos\",\n  \"status\": \"available\",\n  \"isSterilized\": true,\n  \"description\": \"Perrito amoroso en busca de hogar.\",\n  \"isFeatured\": true,\n  \"isActive\": true,\n  \"orderIndex\": 1\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/animals",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "animals"
+                      ]
+                    },
+                    "description": "Crea la ficha principal del animal. Copia el id en animalId."
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "03 - Imagenes del animal",
+              "item": [
+                {
+                  "name": "01 - Admin - Add Animal Image",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"mediaId\": \"{{mediaId}}\",\n  \"isPrimary\": true,\n  \"orderIndex\": 1\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/animals/{{animalId}}/images",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "animals",
+                        "{{animalId}}",
+                        "images"
+                      ]
+                    },
+                    "description": "Asocia una imagen ya subida al animal. Copia el id de respuesta en animalImageId."
+                  },
+                  "response": []
+                },
+                {
+                  "name": "02 - Admin - Eliminar Animal Image",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/animals/{{animalId}}/images/{{animalImageId}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "animals",
+                        "{{animalId}}",
+                        "images",
+                        "{{animalImageId}}"
+                      ]
+                    },
+                    "description": "Elimina logicamente la relacion entre animal e imagen."
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "04 - Caracteristicas del animal",
+              "item": [
+                {
+                  "name": "01 - Admin - Add Animal Characteristic",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"label\": \"Amoroso\",\n  \"orderIndex\": 1,\n  \"isActive\": true\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/animals/{{animalId}}/characteristics",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "animals",
+                        "{{animalId}}",
+                        "characteristics"
+                      ]
+                    },
+                    "description": "Agrega una caracteristica visible del animal. Copia el id en characteristicId."
+                  },
+                  "response": []
+                },
+                {
+                  "name": "02 - Admin - Actualizar Characteristic",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"label\": \"Muy amoroso\",\n  \"orderIndex\": 1,\n  \"isActive\": true\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/animals/{{animalId}}/characteristics/{{characteristicId}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "animals",
+                        "{{animalId}}",
+                        "characteristics",
+                        "{{characteristicId}}"
+                      ]
+                    },
+                    "description": "Actualiza una caracteristica del animal."
+                  },
+                  "response": []
+                },
+                {
+                  "name": "03 - Admin - Eliminar Characteristic",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/animals/{{animalId}}/characteristics/{{characteristicId}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "animals",
+                        "{{animalId}}",
+                        "characteristics",
+                        "{{characteristicId}}"
+                      ]
+                    },
+                    "description": "Elimina logicamente una caracteristica."
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "05 - Administracion animal",
+              "item": [
+                {
+                  "name": "01 - Admin - Obtener Animals",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/animals",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "animals"
+                      ]
+                    },
+                    "description": "Lista animales para el CRM/admin."
+                  },
+                  "response": []
+                },
+                {
+                  "name": "02 - Admin - Actualizar Animal",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"Lucky Perrito Actualizado\",\n  \"description\": \"Descripcion actualizada desde el CRM.\",\n  \"status\": \"available\",\n  \"isFeatured\": true,\n  \"isActive\": true,\n  \"orderIndex\": 1\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/animals/{{animalId}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "animals",
+                        "{{animalId}}"
+                      ]
+                    },
+                    "description": "Actualiza la ficha principal del animal."
+                  },
+                  "response": []
+                },
+                {
+                  "name": "03 - Admin - Eliminar Animal",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/animals/{{animalId}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "animals",
+                        "{{animalId}}"
+                      ]
+                    },
+                    "description": "Elimina logicamente la ficha del animal. Usalo al final."
+                  },
+                  "response": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "12 - Adopciones / Tipos de vivienda - Admin/Operador",
+          "item": [
+            {
+              "name": "01 - Admin - Obtener Housing Types",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/adoptions/housing-types",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "adoptions",
+                    "housing-types"
+                  ]
+                },
+                "description": "Lista tipos de vivienda para el CRM."
+              },
+              "response": []
+            },
+            {
+              "name": "02 - Admin - Crear Housing Type",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"house_yard\",\n  \"name\": \"Casa con patio\",\n  \"description\": \"Vivienda con espacio exterior seguro.\",\n  \"requiresOtherDetail\": false,\n  \"isActive\": true,\n  \"orderIndex\": 1\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/admin/adoptions/housing-types",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "adoptions",
+                    "housing-types"
+                  ]
+                },
+                "description": "Crea un tipo de vivienda. Copia id en housingTypeId."
+              },
+              "response": []
+            },
+            {
+              "name": "03 - Admin - Actualizar Housing Type",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Casa con patio actualizada\",\n  \"description\": \"Descripcion actualizada desde el CRM.\",\n  \"isActive\": true,\n  \"orderIndex\": 1\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/admin/adoptions/housing-types/{{housingTypeId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "adoptions",
+                    "housing-types",
+                    "{{housingTypeId}}"
+                  ]
+                },
+                "description": "Actualiza un tipo de vivienda."
+              },
+              "response": []
+            },
+            {
+              "name": "04 - Admin - Eliminar Housing Type",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/adoptions/housing-types/{{housingTypeId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "adoptions",
+                    "housing-types",
+                    "{{housingTypeId}}"
+                  ]
+                },
+                "description": "Elimina logicamente un tipo de vivienda. Usalo al final."
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "13 - Adopciones / Solicitudes - Admin/Operador",
+          "item": [
+            {
+              "name": "01 - Solicitudes admin",
+              "item": [
+                {
+                  "name": "01 - Admin - Obtener Adoption Applications",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/adoptions/applications",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "adoptions",
+                        "applications"
+                      ]
+                    },
+                    "description": "Lista solicitudes para revision admin/operador. Copia id en applicationId."
+                  },
+                  "response": []
+                },
+                {
+                  "name": "02 - Admin - Actualizar Adoption Status",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"under_review\",\n  \"reviewMessage\": \"Solicitud recibida. Iniciaremos la revision.\"\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/adoptions/applications/{{applicationId}}/status",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "adoptions",
+                        "applications",
+                        "{{applicationId}}",
+                        "status"
+                      ]
+                    },
+                    "description": "Cambia el estado de una solicitud y crea registro en adoption_status_history."
+                  },
+                  "response": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "14 - Voluntariado - Admin/Operador",
+          "item": [
+            {
+              "name": "01 - Requisitos admin",
+              "item": [
+                {
+                  "name": "01 - Admin - Obtener Requirements",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/volunteers/requirements",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "volunteers",
+                        "requirements"
+                      ]
+                    },
+                    "description": "Lista requisitos para el CRM/admin."
+                  },
+                  "response": []
+                },
+                {
+                  "name": "02 - Admin - Crear Requirement",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"Disponibilidad fines de semana\",\n  \"description\": \"Se requiere apoyo en jornadas de adopcion y rescate.\",\n  \"type\": \"schedule\",\n  \"isRequired\": true,\n  \"isActive\": true,\n  \"orderIndex\": 1\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/volunteers/requirements",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "volunteers",
+                        "requirements"
+                      ]
+                    },
+                    "description": "Crea un requisito. Copia id en requirementId."
+                  },
+                  "response": []
+                },
+                {
+                  "name": "03 - Admin - Actualizar Requirement",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"Disponibilidad actualizada\",\n  \"description\": \"Descripcion actualizada desde el CRM.\",\n  \"isActive\": true,\n  \"orderIndex\": 1\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/volunteers/requirements/{{requirementId}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "volunteers",
+                        "requirements",
+                        "{{requirementId}}"
+                      ]
+                    },
+                    "description": "Actualiza un requisito."
+                  },
+                  "response": []
+                },
+                {
+                  "name": "04 - Admin - Eliminar Requirement",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/volunteers/requirements/{{requirementId}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "volunteers",
+                        "requirements",
+                        "{{requirementId}}"
+                      ]
+                    },
+                    "description": "Elimina logicamente un requisito. Usalo al final."
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "02 - Solicitudes admin",
+              "item": [
+                {
+                  "name": "01 - Admin - Obtener Volunteer Applications",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/volunteers/applications",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "volunteers",
+                        "applications"
+                      ]
+                    },
+                    "description": "Lista solicitudes para revision admin. Copia id en applicationId."
+                  },
+                  "response": []
+                },
+                {
+                  "name": "02 - Admin - Actualizar Volunteer Status",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"approved\",\n  \"reviewMessage\": \"Solicitud aprobada. Bienvenido al equipo de voluntariado.\"\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/volunteers/applications/{{applicationId}}/status",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "volunteers",
+                        "applications",
+                        "{{applicationId}}",
+                        "status"
+                      ]
+                    },
+                    "description": "Cambia estado. Si status es approved, crea volunteer_profile."
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "03 - Voluntarios aprobados",
+              "item": [
+                {
+                  "name": "01 - Admin - Obtener Volunteer Profiles",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{adminToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/volunteers/profiles",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "volunteers",
+                        "profiles"
+                      ]
+                    },
+                    "description": "Lista perfiles de voluntarios aprobados."
+                  },
+                  "response": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "15 - Contacto - Admin/Operador",
+          "item": [
+            {
+              "name": "01 - Admin - Obtener Contact Info",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/settings/contact-info",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "settings",
+                    "contact-info"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "02 - Admin - Crear Contact Info",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"whatsappNumber\": \"+593999999999\",\n  \"phoneLabel\": \"0999999999\",\n  \"email\": \"contacto@lucky.com\",\n  \"address\": \"Quito, Ecuador\",\n  \"mapEmbedUrl\": \"https://maps.google.com\",\n  \"googleMapsUrl\": \"https://maps.google.com\",\n  \"isActive\": true\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/admin/settings/contact-info",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "settings",
+                    "contact-info"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "03 - Admin - Actualizar Contact Info",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phoneLabel\": \"Atencion por WhatsApp\",\n  \"address\": \"Quito, Ecuador\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/admin/settings/contact-info/{{contactInfoId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "settings",
+                    "contact-info",
+                    "{{contactInfoId}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "04 - Admin - Eliminar Contact Info",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/settings/contact-info/{{contactInfoId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "settings",
+                    "contact-info",
+                    "{{contactInfoId}}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "16 - Redes sociales - Admin/Operador",
+          "item": [
+            {
+              "name": "01 - Admin - Obtener Social Links",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/settings/social-links",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "settings",
+                    "social-links"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "02 - Admin - Crear Social Link",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"platform\": \"instagram\",\n  \"label\": \"Instagram\",\n  \"url\": \"https://instagram.com/fundacionlucky\",\n  \"icon\": \"instagram\",\n  \"isActive\": true,\n  \"orderIndex\": 1\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/admin/settings/social-links",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "settings",
+                    "social-links"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "03 - Admin - Actualizar Social Link",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"Instagram Fundacion Lucky\",\n  \"orderIndex\": 2\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/admin/settings/social-links/{{socialLinkId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "settings",
+                    "social-links",
+                    "{{socialLinkId}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "04 - Admin - Eliminar Social Link",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/settings/social-links/{{socialLinkId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "settings",
+                    "social-links",
+                    "{{socialLinkId}}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "17 - FAQ - Admin/Operador",
+          "item": [
+            {
+              "name": "01 - Admin - Obtener FAQs",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/settings/faqs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "settings",
+                    "faqs"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "02 - Admin - Crear FAQ",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"question\": \"Como puedo adoptar?\",\n  \"answer\": \"Completa la solicitud de adopcion y el equipo revisara tu caso.\",\n  \"category\": \"adopciones\",\n  \"isActive\": true,\n  \"orderIndex\": 1\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/admin/settings/faqs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "settings",
+                    "faqs"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "03 - Admin - Actualizar FAQ",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"answer\": \"Completa la solicitud y espera la revision del equipo.\",\n  \"orderIndex\": 2\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/admin/settings/faqs/{{faqId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "settings",
+                    "faqs",
+                    "{{faqId}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "04 - Admin - Eliminar FAQ",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/settings/faqs/{{faqId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "settings",
+                    "faqs",
+                    "{{faqId}}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "02 - PUBLIC USER / LANDING PAGE",
+      "item": [
+        {
+          "name": "01 - Registro usuario publico",
+          "item": [
+            {
+              "name": "01 - Registro usuario publico",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": " application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"email\": \"nicole_castillo@lucky.com\",\r\n  \"password\": \"12345678\",\r\n  \"firstNames\": \"nicole\",\r\n  \"lastNames\": \"castillo\",\r\n  \"phone\": \"0999999999\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/auth/register",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "02 - Ver perfil usuario publico",
+          "item": [
+            {
+              "name": "01 - Ver usuario publico",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{userPublicToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": " application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://localhost:3000/auth/me",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "auth",
+                    "me"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "03 - Actualizar perfil propio",
+          "item": [
+            {
+              "name": "01 - Actualizar perfil propio",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": " application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"avatarId\": \"8df2b0f4-39fe-4ab6-b39b-677086b4c442\",\r\n  \"firstNames\": \"Dayana\",\r\n  \"lastNames\": \"Castillo\",\r\n  \"phone\": \"0999999999\",\r\n  \"birthDate\": \"2000-05-10\",\r\n  \"address\": \"Quito, Ecuador\",\r\n  \"housingSector\": \"Norte\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/users/me/profile",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "users",
+                    "me",
+                    "profile"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "04 - Avatares e insignias publicas",
+          "item": [
+            {
+              "name": "01 - Public - Obtener Avatar Options",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/public/avatar-options",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "public",
+                    "avatar-options"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "02 - Public - Obtener Badges",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/public/badges",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "public",
+                    "badges"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "05 - Landing publica",
+          "item": [
+            {
+              "name": "01 - Consulta publica",
+              "item": [
+                {
+                  "name": "01 - Landing - Public Obtener",
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/public/landing",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "public",
+                        "landing"
+                      ]
+                    },
+                    "description": "Obtiene la landing publica. No necesita token. Devuelve solo contenido activo y no eliminado."
+                  },
+                  "response": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "06 - Publicaciones / Categorias publicas",
+          "item": [
+            {
+              "name": "01 - Public - Obtener Categories",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/public/publication-categories",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "public",
+                    "publication-categories"
+                  ]
+                },
+                "description": "Lista categorias activas y no eliminadas para la web publica."
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "07 - Publicaciones / Listado y detalle",
+          "item": [
+            {
+              "name": "01 - Public - Obtener Publications",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/public/publications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "public",
+                    "publications"
+                  ]
+                },
+                "description": "Lista publicaciones publicas: status published, activas y no eliminadas."
+              },
+              "response": []
+            },
+            {
+              "name": "02 - Public - Obtener Publication By Slug",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/public/publications/{{publicationSlug}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "public",
+                    "publications",
+                    "{{publicationSlug}}"
+                  ]
+                },
+                "description": "Obtiene el detalle publico de una publicacion por slug."
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "08 - Catalogo animales publico",
+          "item": [
+            {
+              "name": "01 - Consulta publica",
+              "item": [
+                {
+                  "name": "01 - Public - Obtener Animals",
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/public/animals",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "public",
+                        "animals"
+                      ]
+                    },
+                    "description": "Lista animales visibles publicamente: activos, no hidden y no eliminados."
+                  },
+                  "response": []
+                },
+                {
+                  "name": "02 - Public - Obtener Animal By Slug",
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/public/animals/{{animalSlug}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "public",
+                        "animals",
+                        "{{animalSlug}}"
+                      ]
+                    },
+                    "description": "Obtiene detalle publico del animal por slug."
+                  },
+                  "response": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "09 - Adopciones / Tipos de vivienda",
+          "item": [
+            {
+              "name": "01 - Public - Obtener Housing Types",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/public/adoptions/housing-types",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "public",
+                    "adoptions",
+                    "housing-types"
+                  ]
+                },
+                "description": "Lista tipos de vivienda activos para formularios publicos."
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "10 - Adopciones / Solicitudes usuario",
+          "item": [
+            {
+              "name": "01 - Solicitudes usuario",
+              "item": [
+                {
+                  "name": "01 - User - Crear Adoption Application",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{userToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"animalId\": \"{{animalId}}\",\n  \"housingTypeId\": \"{{housingTypeId}}\",\n  \"housingOtherDetail\": null,\n  \"adoptionReason\": \"Quiero darle un hogar responsable y amoroso.\"\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/adoptions/applications",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "adoptions",
+                        "applications"
+                      ]
+                    },
+                    "description": "Crea una solicitud de adopcion como usuario publico autenticado. Requiere animalId y housingTypeId."
+                  },
+                  "response": []
+                },
+                {
+                  "name": "02 - User - Obtener My Adoption Applications",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{userToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/adoptions/applications/me",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "adoptions",
+                        "applications",
+                        "me"
+                      ]
+                    },
+                    "description": "Lista mis solicitudes de adopcion."
+                  },
+                  "response": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "11 - Voluntariado / Requisitos y solicitudes",
+          "item": [
+            {
+              "name": "01 - Requisitos publico",
+              "item": [
+                {
+                  "name": "01 - Public - Obtener Requirements",
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/public/volunteers/requirements",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "public",
+                        "volunteers",
+                        "requirements"
+                      ]
+                    },
+                    "description": "Lista requisitos activos de voluntariado para la web publica."
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "02 - Solicitudes usuario",
+              "item": [
+                {
+                  "name": "01 - User - Crear Volunteer Application",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{userPublicToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"motivation\": \"Quiero ayudar en rescates, jornadas y cuidado animal.\",\n  \"availabilityType\": \"weekends\",\n  \"isAdultConfirmed\": true\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/volunteers/applications",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "volunteers",
+                        "applications"
+                      ]
+                    },
+                    "description": "Crea una solicitud de voluntariado como usuario autenticado."
+                  },
+                  "response": []
+                },
+                {
+                  "name": "02 - User - Obtener My Volunteer Applications",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{userToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/volunteers/applications/me",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "volunteers",
+                        "applications",
+                        "me"
+                      ]
+                    },
+                    "description": "Lista mis solicitudes de voluntariado."
+                  },
+                  "response": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "12 - Contacto publico",
+          "item": [
+            {
+              "name": "01 - Public - Obtener Contact Info",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/public/contact-info",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "public",
+                    "contact-info"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "13 - Redes publicas",
+          "item": [
+            {
+              "name": "01 - Public - Obtener Social Links",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/public/social-links",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "public",
+                    "social-links"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "14 - FAQ publico",
+          "item": [
+            {
+              "name": "01 - Public - Obtener FAQs",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/public/faqs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "public",
+                    "faqs"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    },
+    {
+      "key": "adminToken",
+      "value": ""
+    },
+    {
+      "key": "publicationSlug",
+      "value": "campana-adopcion-julio"
+    },
+    {
+      "key": "userPublicToken",
+      "value": ""
+    }
+  ]
+}
